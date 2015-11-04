@@ -22,6 +22,8 @@ gem "responders"
 gem "traceroute"
 gem "rails_12factor", group: :production
 gem "populator"
+gem 'bullet'
+gem 'will_paginate'
 
 group :development, :test do
   gem "pry-rails"
@@ -41,4 +43,8 @@ end
 
 group :test do
   gem "simplecov", :require => false
+end
+
+group :development, :production do
+  gem 'newrelic_rpm'
 end
