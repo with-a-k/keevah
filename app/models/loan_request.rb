@@ -12,7 +12,7 @@ class LoanRequest < ActiveRecord::Base
   enum repayment_rate: %w(monthly weekly)
   before_create :assign_default_image
 
-  self.per_page = 40
+  self.per_page = 15
 
   def assign_default_image
     self.image_url = DefaultImages.random if self.image_url.to_s.empty?
@@ -83,6 +83,8 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def related_projects
-    (categories.flat_map(&:loan_requests) - [self]).shuffle.take(4)
+    Rails.cache.fetch("loan_request_#{id}_related_projects") do
+      LoanRequest.joins(:categories).where(['categories.id = ?', categories.map(&:id)]).sample(4)
+    end
   end
 end
