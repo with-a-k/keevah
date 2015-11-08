@@ -46,12 +46,14 @@ module LoadScript
     end
 
     def actions
-      # [:browse_loan_requests, 
-      #  :logged_in_browse_loan_requests,
-      #  :sign_up_as_lender,
-       # :sign_up_as_borrower, 
-       # :make_a_loan,
-       [:make_a_loan_request]
+      [:browse_loan_requests, 
+       :logged_in_browse_loan_requests,
+       :sign_up_as_lender,
+       :sign_up_as_borrower, 
+       :make_a_loan,
+       :make_a_loan_request,
+       :browse_categories,
+       :browse_in_category]
     end
 
     def log_in(email="demo+horace@jumpstartlab.com", pw="password")
@@ -111,7 +113,7 @@ module LoadScript
       end
     end
 
-    def sign_up_as_borrower(name = new_borrower_name)
+    def sign_up_as_borrower(name = new_user_name)
       log_out
       session.find("#sign-up-dropdown").click
       session.find("#sign_up_as_borrower").click
@@ -144,6 +146,18 @@ module LoadScript
       session.click_link_or_button "Contribute $25"
       session.visit "#{host}/cart"
       session.click_link_or_button "Transfer Funds"
+    end
+
+    def browse_categories
+      log_out
+      session.visit "#{host}/categories"
+      session.click_link_or_button categories.sample
+    end
+
+    def browse_in_category
+      log_out
+      session.visit "#{host}/categories/#{rand(11).to_s}?page=#{rand(100).to_s}"
+      session.all(".lr-about").sample.click
     end
 
     def categories

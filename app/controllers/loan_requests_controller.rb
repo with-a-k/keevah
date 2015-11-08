@@ -37,6 +37,14 @@ class LoanRequestsController < ApplicationController
     end
   end
 
+  def related
+    respond_to do |format|
+      format.js do
+        #???
+      end
+    end
+  end
+
   private
 
   def loan_request_params

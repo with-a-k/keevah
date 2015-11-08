@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'categories/index'
+
+  get 'categories/show'
+
   root "home#index"
 
   get "/browse", to: "loan_requests#index"
@@ -9,6 +13,8 @@ Rails.application.routes.draw do
   resources :payment, only: [:update]
 
   resources :loan_requests
+
+  resources :categories, only: [:index, :show]
 
   get "/cart", to: "cart#index"
   post "/cart", to: "cart#create"
