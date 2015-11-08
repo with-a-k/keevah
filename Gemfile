@@ -24,6 +24,7 @@ gem "rails_12factor", group: :production
 gem "populator"
 gem 'bullet'
 gem 'will_paginate'
+gem 'pry'
 
 group :development, :test do
   gem "pry-rails"

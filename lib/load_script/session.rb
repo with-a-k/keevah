@@ -116,7 +116,7 @@ module LoadScript
     def sign_up_as_borrower(name = new_user_name)
       log_out
       session.find("#sign-up-dropdown").click
-      session.find("#sign_up_as_borrower").click
+      session.find("#sign-up-as-borrower").click
       session.within("#borrowerSignUpModal") do
         session.fill_in("user_name", with: name)
         session.fill_in("user_email", with: new_user_email(name))
@@ -156,7 +156,7 @@ module LoadScript
 
     def browse_in_category
       log_out
-      session.visit "#{host}/categories/#{rand(11).to_s}?page=#{rand(100).to_s}"
+      session.visit "#{host}/categories/#{rand(11).to_s}?page=#{rand(10).to_s}"
       session.all(".lr-about").sample.click
     end
 
