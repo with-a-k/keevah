@@ -25,13 +25,13 @@ gem "populator"
 gem 'bullet'
 gem 'will_paginate'
 gem 'pry'
+gem "capybara"
 
 group :development, :test do
   gem "pry-rails"
   gem "awesome_print"
   gem "web-console", "~> 2.0"
   gem "rspec-rails"
-  gem "capybara"
   gem "launchy"
   gem "database_cleaner"
   gem "poltergeist"
