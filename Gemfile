@@ -26,6 +26,7 @@ gem 'bullet'
 gem 'will_paginate'
 gem 'pry'
 gem "capybara"
+gem "poltergeist"
 
 group :development, :test do
   gem "pry-rails"
@@ -34,7 +35,6 @@ group :development, :test do
   gem "rspec-rails"
   gem "launchy"
   gem "database_cleaner"
-  gem "poltergeist"
 end
 
 group :development do
