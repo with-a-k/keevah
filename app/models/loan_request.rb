@@ -47,9 +47,8 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def progress_percentage
-    unless self == []
-      return ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
-    end
+    percent = ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
+    return percent if percent.class == Fixnum
     0
   end
 
