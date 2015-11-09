@@ -134,7 +134,7 @@ module LoadScript
         session.fill_in("loan_request_description", with: "#{Faker::Company.catch_phrase}")
         session.find("#loan_request_requested_by_date").set("06/01/2016")
         session.find("#loan_request_repayment_begin_date").set("06/01/2016")
-        session.fill_in("loan_request_amount", with: "#{(rand(10)*10).to_s}")
+        session.fill_in("loan_request_amount", with: "#{(rand(10)*10 + 10).to_s}")
         session.click_link_or_button "Submit"
       end
     end
