@@ -48,8 +48,9 @@ class LoanRequest < ActiveRecord::Base
 
   def progress_percentage
     unless self == []
-      ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
+      return ((1.00 - (funding_remaining.to_f / amount.to_f)) * 100).to_i
     end
+    0
   end
 
   def minimum_payment
