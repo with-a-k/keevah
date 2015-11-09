@@ -84,12 +84,7 @@ class LoanRequest < ActiveRecord::Base
 
   def related_projects
     Rails.cache.fetch("loan_request_#{id}_related_projects") do
-      LoanRequest.
-        joins(:loan_requests_categories).
-        where(loan_requests_categories: { category_id: self.category_ids }).
-        where.not(loan_requests_categories: { loan_request_id: self }).
-        limit(4).
-        order("RANDOM()")
+      LoanRequestsCategory.where(['category_id = ?', categories.map(&:id)]).sample(4).map(&:loan_request)
     end
   end
 end
